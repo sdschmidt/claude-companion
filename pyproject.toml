@@ -1,0 +1,54 @@
+[project]
+name = "claude-code-assist"
+version = "0.1.0"
+description = "Cross-platform desktop companion that reacts to your Claude Code sessions."
+readme = "README.md"
+authors = [
+    { name = "Simon Schmidt", email = "sdschmidt@users.noreply.github.com" },
+]
+requires-python = ">=3.13"
+dependencies = [
+    "claude-agent-sdk>=0.1.68",
+    "google-genai>=1.73.1",
+    "numpy>=2.4.4",
+    "openai>=2.32.0",
+    "pillow>=12.2.0",
+    "pydantic>=2.13.3",
+    "pyobjc-framework-cocoa>=12.1 ; sys_platform == 'darwin'",
+    "pyside6>=6.11.0",
+    "python-dotenv>=1.2.2",
+    "pyyaml>=6.0.3",
+    "questionary>=2.1.1",
+    "rich>=13.9.0",
+    "watchdog>=6.0.0",
+    "xdg-base-dirs>=6.0.2",
+]
+
+[project.scripts]
+companion = "claude_code_assist.cli:main"
+
+[dependency-groups]
+dev = [
+    "pyright>=1.1.409",
+    "ruff>=0.15.11",
+    "pytest>=9.0.3",
+]
+
+[build-system]
+requires = ["uv_build>=0.10.6,<0.11.0"]
+build-backend = "uv_build"
+
+[tool.ruff]
+target-version = "py313"
+line-length = 120
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "A", "SIM", "TCH"]
+
+[tool.pyright]
+pythonVersion = "3.13"
+typeCheckingMode = "standard"
+venvPath = "."
+venv = ".venv"
+include = ["src"]
